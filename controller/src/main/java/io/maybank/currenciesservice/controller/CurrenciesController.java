@@ -75,7 +75,7 @@ public class CurrenciesController extends BaseController {
     @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createCurrency(@RequestBody @Valid CurrencyDTO currencyDTO) {
         currenciesService.createCurrency(currencyDTO);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(currencyDTO, HttpStatus.OK);
     }
 
     @Operation(description = "Update currency by code.")
@@ -85,9 +85,8 @@ public class CurrenciesController extends BaseController {
             content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class)))
     @PutMapping(value = "/{code}/update", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity updateCurrency(@PathVariable @NotEmpty String code, @RequestParam @NotEmpty String name, @RequestParam @NotEmpty double exRate) {
-        currenciesService.updateCurrency(new CurrencyDTO(code, name, exRate));
-        return new ResponseEntity(HttpStatus.OK);
+        CurrencyDTO currencyDTO = new CurrencyDTO(code, name, exRate);
+        currenciesService.updateCurrency(currencyDTO);
+        return new ResponseEntity(currencyDTO, HttpStatus.OK);
     }
-
-
 }
