@@ -22,5 +22,7 @@ Java : make sure you are using version 11 and above.
 
 Tomcat port: 8182
 
+Log : maybank-currencies-service/app/logs
+
 
 
