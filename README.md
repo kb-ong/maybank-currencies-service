@@ -18,7 +18,7 @@ Note :
 
 DB : SQLITE ( maybank-currencies-service/app/maybank_db_test.db ) , so that no need to import into DB.
 
-Java : make use you are using version 11 and above.
+Java : make sure you are using version 11 and above.
 
 Tomcat port: 8182
 
