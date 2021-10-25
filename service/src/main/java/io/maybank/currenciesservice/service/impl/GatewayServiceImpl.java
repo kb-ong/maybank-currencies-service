@@ -1,7 +1,6 @@
 package io.maybank.currenciesservice.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.maybank.currenciesservice.dto.Auth0UserProfile;
 import io.maybank.currenciesservice.model.Auth0Token;
 import io.maybank.currenciesservice.service.GatewayService;
@@ -24,16 +23,10 @@ import java.util.stream.Collectors;
 @Slf4j
 public class GatewayServiceImpl implements GatewayService {
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
     private final static String TOKEN_SEGMENT = "/oauth/token";
     private final static String EMAIL_SEGMENT = "/api/v2/users-by-email";
 
-    private final static String POST_METHOD = "POST";
-    private final static String GET_METHOD = "GET";
     private final static String QUERYSTR_EMAIL = "email";
-    private final static String HEADER_CONTENT_TYPE = "Content-Type";
-    private final static String HEADER_AUTHORIZATION = "Authorization";
-    private final static String CONTENT_TYPE = "application/json";
     private final static String BODY_CLIENT_ID = "client_id";
     private final static String BODY_CLIENT_SECRET = "client_secret";
     private final static String BODY_AUDIENCE = "audience";
