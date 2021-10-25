@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.4.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>io.maybank.currenciesservice</groupId>
+    <artifactId>maybank-currencies-service</artifactId>
+    <packaging>pom</packaging>
+    <name>Maybank: Currencies Service - Parent</name>
+    <version>${revision}</version>
+
+    <properties>
+        <revision>1.0.0-SNAPSHOT</revision>
+
+        <!-- java compiler version settings -->
+        <java.version>11</java.version>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+
+        <!-- dependency versions -->        
+        <springdoc.openapi.version>1.1.35</springdoc.openapi.version>
+        <swagger.core-v3.version>2.0.9</swagger.core-v3.version>
+        <org.mapstruct.version>1.3.0.Final</org.mapstruct.version>
+        <log4j2.version>2.11.2</log4j2.version>
+
+        <!-- plugin versions -->      
+        <resolve.parent.version.plugin.version>0.8</resolve.parent.version.plugin.version>
+        <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
+        <log4j2-logstash-layout.version>1.0.3</log4j2-logstash-layout.version>
+    </properties>
+
+    <modules>
+        <module>app</module>
+        <module>controller</module>
+        <module>service</module>
+        <module>model</module>
+        <module>dto</module>
+        <module>persistence</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.maybank.currenciesservice</groupId>
+                <artifactId>app</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.maybank.currenciesservice</groupId>
+                <artifactId>model</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.maybank.currenciesservice</groupId>
+                <artifactId>controller</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.maybank.currenciesservice</groupId>
+                <artifactId>dto</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.maybank.currenciesservice</groupId>
+                <artifactId>persistence</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.maybank.currenciesservice</groupId>
+                <artifactId>service</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc.openapi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger.core-v3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${org.mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${org.mapstruct.version}</version>
+            </dependency>          
+            <dependency>
+                <groupId>com.vlkan.log4j2</groupId>
+                <artifactId>log4j2-logstash-layout</artifactId>
+                <version>${log4j2-logstash-layout.version}</version>
+            </dependency>            
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>                
+                <plugin>
+                    <groupId>com.hbakkum.maven.plugins</groupId>
+                    <artifactId>resolve-parent-version-maven-plugin</artifactId>
+                    <version>${resolve.parent.version.plugin.version}</version>
+                </plugin>               
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco-maven-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <!-- plugins settings -->
+        <plugins>
+            <plugin>
+                <groupId>com.hbakkum.maven.plugins</groupId>
+                <artifactId>resolve-parent-version-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>resolve-parent-version</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <phase>test</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

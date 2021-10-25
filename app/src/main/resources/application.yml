@@ -1,0 +1,70 @@
+server:
+  port: 8182
+
+springdoc:
+  openapi:
+    version: '1.0'
+  api-docs:
+    path: '/v3/docs'
+  swagger-ui:
+    path: '/swagger'
+    disable-swagger-default-url: true
+    display-request-duration: true
+    operations-sorter: alpha
+
+spring:
+  cache:
+    cache-names: currencies
+    type: caffeine
+    caffeine:
+      spec: expireAfterWrite=1440m
+
+  jpa:
+    generate-ddl: true
+  properties:
+    hibernate:
+      enable_lazy_load_no_trans: true
+
+logging:
+  config: classpath:log4j2.yml
+#  level:
+#    org:
+#      springframework:
+#        web:
+#          filter:
+#            CommonsRequestLoggingFilter: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: ALWAYS
+  info:
+    git:
+      mode: full
+
+
+database:
+  db:
+    driver: org.sqlite.JDBC
+    url: jdbc:sqlite:maybank_db_test.db
+
+hibernate:
+    dialect: org.sqlite.hibernate.dialect.SQLiteDialect
+    show_sql: true
+
+entitymanager:
+  packagesToScan: io.maybank.currenciesservice
+
+auth0:
+  base_url: https://dev-hxyskpn2.us.auth0.com
+  client_id: RpO98Rk4uqPtEbiSjSVkILwpF0m41nIt
+  client_secret: o1UuMCmaHyJk24uXPO9GRfsFgxj_FALTGTP9v4A3En67dhy6w1LiGGfm6Yj50JTa
+  audience: https://dev-hxyskpn2.us.auth0.com/api/v2/
+  grant_type: client_credentials
+  max-retries: 3
+  first-back-off: 2000
