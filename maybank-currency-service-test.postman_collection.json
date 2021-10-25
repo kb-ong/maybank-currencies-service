@@ -1,0 +1,169 @@
+{
+	"variables": [],
+	"info": {
+		"name": "maybank-currency-service-test",
+		"_postman_id": "80a35966-2322-a806-0dc5-f45e1b85ef3f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth0 - Call to Auth0 API (users-by-email)",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8182/maybank-auth0-service/gateway/Auth0?email=riko20xx%40gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8182",
+					"path": [
+						"maybank-auth0-service",
+						"gateway",
+						"Auth0"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "riko20xx%40gmail.com",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "The restful API will call to get token (/oauth/token) before go to  (users-by-email) call"
+			},
+			"response": []
+		},
+		{
+			"name": "Add new currency",
+			"request": {
+				"url": "http://localhost:8182/maybank-currencies-service/v1/currencies/create",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"code\": \"USD3\",\r\n  \"name\": \"US DOLLAR3\",\r\n  \"exchangeRate\": 3\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update currency by code",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8182/maybank-currencies-service/v1/currencies/MYR/update?name=malaysia&exRate=1.5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8182",
+					"path": [
+						"maybank-currencies-service",
+						"v1",
+						"currencies",
+						"MYR",
+						"update"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "malaysia",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "exRate",
+							"value": "1.5",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete currency by code",
+			"request": {
+				"url": "http://localhost:8182/maybank-currencies-service/v1/currencies/c6/delete",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get currency by code",
+			"request": {
+				"url": "http://localhost:8182/maybank-currencies-service/v1/currencies/MYR/get",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get all currencies",
+			"request": {
+				"url": "http://localhost:8182/maybank-currencies-service/v1/currencies/getAll",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get currencies by pagination",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8182/maybank-currencies-service/v1/currencies/getPagination?page=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8182",
+					"path": [
+						"maybank-currencies-service",
+						"v1",
+						"currencies",
+						"getPagination"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
