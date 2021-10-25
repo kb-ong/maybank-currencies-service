@@ -24,6 +24,7 @@ public class CurrenciesServiceImpl implements CurrenciesService {
 
     @Override
     @Transactional
+    @CacheEvict(value = "currencies", allEntries = true)
     public void createCurrency(CurrencyDTO currencyDTO) {
         Currency currency = currencyMapper.mapToCurrency(currencyDTO);
         currenciesRepository.save(currency);
