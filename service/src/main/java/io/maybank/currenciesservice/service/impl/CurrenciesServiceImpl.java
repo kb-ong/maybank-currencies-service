@@ -34,9 +34,14 @@ public class CurrenciesServiceImpl implements CurrenciesService {
     @CacheEvict(value = "currencies", allEntries = true)
     public void updateCurrency(CurrencyDTO currencyDTO) {
         Currency currency = currenciesRepository.findByCode(currencyDTO.getCode());
-        currency.setExchangeRate(currencyDTO.getExchangeRate());
-        currency.setName(currencyDTO.getName());
-        currenciesRepository.save(currency);
+        if (currency != null) {
+            currency.setExchangeRate(currencyDTO.getExchangeRate());
+            currency.setName(currencyDTO.getName());
+            currenciesRepository.save(currency);
+        } else {
+            String emsg = String.format("Currency code:%s not found", currencyDTO.getCode());
+            throw new CurrenciesException(emsg, null);
+        }
     }
 
     @Override
