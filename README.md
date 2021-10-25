@@ -2,7 +2,7 @@
 
 Step to build & run
 1. sync the code from https://github.com/kb-ong/maybank-currencies-service.git into directory "maybank-currencies-service"
-2. Go into directory "maybank-currencies-service" 
+2. go into directory "maybank-currencies-service" 
 3. build ( mvn clean install )
 4. run (mvn -f app\pom.xml spring-boot:run)
 
