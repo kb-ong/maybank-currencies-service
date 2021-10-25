@@ -87,7 +87,7 @@ public class GatewayServiceImpl implements GatewayService {
                 .retryBackoff(maxRetries, Duration.ofMillis(firstBackOff));
     }
 
-    private List<Auth0UserProfile> getUserInfoByEmail(String email, String accessToken) throws JsonProcessingException {
+    private List<Auth0UserProfile> getUserInfoByEmail(String email, String accessToken){
         return webClient.get()
                 .uri(
                         uriBuilder -> uriBuilder
@@ -104,7 +104,7 @@ public class GatewayServiceImpl implements GatewayService {
     }
 
     @Override
-    public Optional<Auth0UserProfile> getAuth0UserProfileByEmail(String email) throws Exception {
+    public Optional<Auth0UserProfile> getAuth0UserProfileByEmail(String email){
         String accessToken = "bearer " + cachedToken.block().getAccessToken();
         if (!Strings.isEmpty(accessToken)) {
             List<Auth0UserProfile> result = getUserInfoByEmail(email, accessToken);
